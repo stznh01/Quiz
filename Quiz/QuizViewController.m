@@ -18,12 +18,34 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    questions = [ [NSMutableArray alloc] init];
+    answers = [[NSMutableArray alloc] init];
+    currQuestionIndex = 0;
+    [questions addObject:@"What is 7+7?"];
+    [answers addObject:@"14"];
+    
+    [questions addObject:@"What is the capital of Vermont?"];
+    [answers addObject:@"Montpelier"];
+    
+    [questions addObject:@"For what is cognac made?"];
+    [answers addObject:@"Grapes"];
+
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)showQuestion:(id)sender {
+    NSLog(@"In showQuestion");
+    [self.questionLabel setText:[questions objectAtIndex:currQuestionIndex++]];
+}
+- (IBAction)showAnswer:(id)sender {
+    NSLog(@"In showAnswer");
+    
+    [self.answerLabel setText:[answers objectAtIndex:currQuestionIndex]];
 }
 
 @end
