@@ -11,6 +11,8 @@
 @interface QuizViewController : UIViewController
 {
     int currQuestionIndex;
+    bool started;
+    int questionCall;
     
     // the model objects
     NSMutableArray *questions;

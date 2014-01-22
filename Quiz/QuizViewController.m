@@ -18,6 +18,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    started = NO;
     questions = [ [NSMutableArray alloc] init];
     answers = [[NSMutableArray alloc] init];
     currQuestionIndex = 0;
@@ -40,12 +41,19 @@
 
 - (IBAction)showQuestion:(id)sender {
     NSLog(@"In showQuestion");
+    started = YES;
+    if (currQuestionIndex == questions.count) {
+        currQuestionIndex = 0;
+    }
+    questionCall = currQuestionIndex;
     [self.questionLabel setText:[questions objectAtIndex:currQuestionIndex++]];
 }
 - (IBAction)showAnswer:(id)sender {
     NSLog(@"In showAnswer");
+    if (started) {
+        [self.answerLabel setText:[answers objectAtIndex:questionCall]];
+    }
     
-    [self.answerLabel setText:[answers objectAtIndex:currQuestionIndex]];
 }
 
 @end
